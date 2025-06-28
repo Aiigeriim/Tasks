@@ -7,8 +7,8 @@ class TaskAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'name']
     list_filter = ['completion_date', 'status']
     search_fields = ['name']
-    fields = ['name', 'status', 'completion_date' ]
-    readonly_fields = ['completion_date']
+    fields = ['name', 'status', 'completion_date', 'description' ]
+    #readonly_fields = ['completion_date']
 
 
 admin.site.register(Task, TaskAdmin)
