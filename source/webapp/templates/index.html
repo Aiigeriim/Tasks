@@ -1,0 +1,33 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img style="height: 200px" src="{% static cat.cat_avatar %}" alt="Кот" />
+    <p>Кот {{ cat.name }}</p>
+    <p>Возраст - {{ cat.age }} лет</p>
+    <p>Уровень сытости - {{ cat.satiety }}</p>
+    <p>Уровень счастья - {{ cat.happiness }}</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="action_select">Выберите действие:</label>
+        <select id="action_select" name="cat_action">
+            <option value="play">поиграть с котом</option>
+            <option value="feed">покормить кота</option>
+            <option value="sleep">уложить спать кота</option>
+        </select><br/>
+        <br/><button type="submit">Подтвердить</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
