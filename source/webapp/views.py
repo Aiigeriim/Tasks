@@ -1,44 +1,31 @@
-
-
-from django.http import HttpResponseRedirect
-# Create your views here.
-
 from django.shortcuts import render
-from .cat import Cat
+from django.http import HttpResponseRedirect
+from webapp.models import Task, status_choices
 
-current_cat = None
 
-def create_name(request):
+# Create your views here.
+def index(request):
+    tasks = Task.objects.order_by('-completion_date')
+    return render(request, 'index.html', {"tasks": tasks})
+
+
+def create_task(request):
     if request.method == "POST":
         name = request.POST.get('name')
-        if name:
-            current_cat = Cat(name=name)
-            print(current_cat)
+        status = request.POST.get('status')
+        Task.objects.create(name=name, status=status)
         return HttpResponseRedirect("/")
     else:
-        return render(request, 'create_cat.html')
-
-def cat_view(request):
-
-    create_name(request)
-    name = request.GET.get('name')
-    cat = Cat(name=name)
-    message = ""
-    if request.method == "POST":
-        action = request.POST.get('cat_action')
-
-        if action == "play":
-            message = cat.play()
-        elif action == "feed":
-            message = cat.eat()
-        elif action == "sleep":
-            message = cat.sleep()
-
-        cat.cat_avatar = cat.set_new_avatar()
-    return render(request, 'index.html', {'cat': cat, 'message': message})
+        return render(request, 'create_task.html', {"status_choices": status_choices})
 
 
-
-
-
-
+def task_detail(request):
+    task_id = request.GET.get('id')
+    if task_id:
+        try:
+            task = Task.objects.get(id=task_id)
+            return render(request, 'detail_task.html', {"task": task})
+        except Task.DoesNotExist:
+            return HttpResponseRedirect("/")
+    else:
+        return HttpResponseRedirect("/")

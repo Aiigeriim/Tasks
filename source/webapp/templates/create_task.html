@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Создать задачу</h1>
+
+
+<form action="/add-task/" method="post">
+    {% csrf_token %}
+    <label>Наименование:</label><br/>
+    <input type="text" name="name" required/>
+    <br/>
+    <br/>
+    <label>Дэдлайн:</label><br/>
+    <input type="date" id="myDate" name="myDate" value="-" min="2025-01-01" max="2025-12-31" placeholder="Выберите дату">
+    <br/>
+    <br/>
+    <label>Статус:</label><br/>
+    <select name="status">
+        {% for status in status_choices %}
+        <option value="{{ status.0 }}">{{ status.1 }}</option>
+        {% endfor %}
+    </select>
+    <br/>
+    <br/>
+    <input type="submit" value="Send"/>
+
+
+</form>
+</body>
+</html>

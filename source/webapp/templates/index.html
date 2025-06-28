@@ -1,33 +1,62 @@
 {% load static %}
 
-
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <img style="height: 200px" src="{% static cat.cat_avatar %}" alt="Кот" />
-    <p>Кот {{ cat.name }}</p>
-    <p>Возраст - {{ cat.age }} лет</p>
-    <p>Уровень сытости - {{ cat.satiety }}</p>
-    <p>Уровень счастья - {{ cat.happiness }}</p>
+    <a href="add-task/">Создать задачу</a>
+    <div class="articles">
+        <h1>To do list</h1>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="action_select">Выберите действие:</label>
-        <select id="action_select" name="cat_action">
-            <option value="play">поиграть с котом</option>
-            <option value="feed">покормить кота</option>
-            <option value="sleep">уложить спать кота</option>
-        </select><br/>
-        <br/><button type="submit">Подтвердить</button>
-    </form>
 
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
+        <style>
+        .articles {
+            width: 600px;
+            margin: 0 auto;
+            font-family: sans-serif;
+        }
+
+        .article {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .article h1 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+
+        .article p {
+            margin: 0;
+            color: gray;
+        }
+    </style>
+
+
+        {% for task in tasks %}
+            <div class="article">
+
+                    <h1>{{task.name}}</h1>
+                </a>
+                <p>{{ task.status }}</p>
+                <hr/>
+                <p>{{ task.completion_date }}</p>
+                <hr/>
+            </div>
+
+        {% empty %}
+        <p>No tasks</p>
+        {% endfor %}
+    </div>
 </body>
 </html>
