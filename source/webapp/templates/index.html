@@ -1,62 +1,25 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <a href="add-task/">Создать задачу</a>
-    <div class="articles">
-        <h1>To do list</h1>
+{% block title %}
+    	<title>Tasks</title>
+    {% endblock %}
 
-
-        <style>
-        .articles {
-            width: 600px;
-            margin: 0 auto;
-            font-family: sans-serif;
-        }
-
-        .article {
-            background-color: #f8f8f8;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .article h1 {
-            font-size: 20px;
-            margin: 0 0 10px 0;
-        }
-
-        .article p {
-            margin: 0;
-            color: gray;
-        }
-    </style>
-
-
-        {% for task in tasks %}
-            <div class="article">
-
-                    <h1>{{task.name}}</h1>
-                </a>
-                <p>{{ task.status }}</p>
-                <hr/>
-                <p>{{ task.completion_date }}</p>
-                <hr/>
-            </div>
-
-        {% empty %}
+{% block content %}
+<div class="row mt-5">
+     {% for task in tasks %}
+         <div class="col-12 col-md-4 col-lg-3 mb-3">
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{task.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.get_status_display }}</h6>
+    <p style="white-space: pre-wrap;" class="card-text">{{ task.completion_date }}</p>
+    <a href="{% url 'task_detail' task.pk %}" style="text-decoration: none;" class="card-link">💡 Просветление</a>
+  </div>
+</div>
+         </div>
+         {% empty %}
         <p>No tasks</p>
         {% endfor %}
-    </div>
-</body>
-</html>
+</div>
+
+{% endblock %}
