@@ -1,33 +1,25 @@
-{% load static %}
+{% extends 'base.html' %}
 
+{% block title %}
+    	<title>Tasks</title>
+    {% endblock %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <img style="height: 200px" src="{% static cat.cat_avatar %}" alt="Кот" />
-    <p>Кот {{ cat.name }}</p>
-    <p>Возраст - {{ cat.age }} лет</p>
-    <p>Уровень сытости - {{ cat.satiety }}</p>
-    <p>Уровень счастья - {{ cat.happiness }}</p>
+{% block content %}
+<div class="row mt-5">
+     {% for task in tasks %}
+         <div class="col-12 col-md-4 col-lg-3 mb-3">
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{task.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.get_status_display }}</h6>
+    <p style="white-space: pre-wrap;" class="card-text">{{ task.completion_date }}</p>
+    <a href="{% url 'task_detail' task.pk %}" style="text-decoration: none;" class="card-link">💡 Просветление</a>
+  </div>
+</div>
+         </div>
+         {% empty %}
+        <p>No tasks</p>
+        {% endfor %}
+</div>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="action_select">Выберите действие:</label>
-        <select id="action_select" name="cat_action">
-            <option value="play">поиграть с котом</option>
-            <option value="feed">покормить кота</option>
-            <option value="sleep">уложить спать кота</option>
-        </select><br/>
-        <br/><button type="submit">Подтвердить</button>
-    </form>
-
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
-</body>
-</html>
+{% endblock %}

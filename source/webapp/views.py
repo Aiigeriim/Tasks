@@ -1,44 +1,30 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from webapp.models import Task, status_choices
 
 
-from django.http import HttpResponseRedirect
 # Create your views here.
+def index(request):
+    tasks = Task.objects.order_by('completion_date')
+    return render(request, 'index.html', {"tasks": tasks} )
 
-from django.shortcuts import render
-from .cat import Cat
 
-current_cat = None
-
-def create_name(request):
+def create_task(request):
     if request.method == "POST":
         name = request.POST.get('name')
-        if name:
-            current_cat = Cat(name=name)
-            print(current_cat)
-        return HttpResponseRedirect("/")
+        description = request.POST.get('description')
+        status = request.POST.get('status')
+        completion_date = request.POST.get('myDate')
+
+        task = Task.objects.create(name=name, description=description, status=status, completion_date=completion_date)
+        return redirect('task_detail', pk=task.pk)
     else:
-        return render(request, 'create_cat.html')
-
-def cat_view(request):
-
-    create_name(request)
-    name = request.GET.get('name')
-    cat = Cat(name=name)
-    message = ""
-    if request.method == "POST":
-        action = request.POST.get('cat_action')
-
-        if action == "play":
-            message = cat.play()
-        elif action == "feed":
-            message = cat.eat()
-        elif action == "sleep":
-            message = cat.sleep()
-
-        cat.cat_avatar = cat.set_new_avatar()
-    return render(request, 'index.html', {'cat': cat, 'message': message})
+        return render(request, 'create_task.html', {"status_choices": status_choices})
 
 
 
+def task_detail(request, *args, pk, **kwargs):
+    task = get_object_or_404(Task, id=pk)
+    return render(request, 'detail_task.html', {"task": task})
 
 
 
