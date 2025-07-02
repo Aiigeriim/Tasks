@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form method="POST">
+     {% csrf_token %}
+    <p>Вы уверены, что хотите удалить дело: {{ task.name }}?</p>
+     <a class="btn btn-success" href="{% url 'index' %}">Отмена</a>
+    <button class="btn btn-danger" type="submit">Да</button>
+    </form>
+
+{% endblock %}
