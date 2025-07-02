@@ -3,10 +3,10 @@ from django.db import models
 status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'),  ('done', 'Сделано')]
 
 class Task(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Задача')
-    description = models.TextField(verbose_name='Как я это сделаю', null=True, blank=True)
+    name = models.CharField(max_length=50, verbose_name='Дело')
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
     status = models.CharField(max_length=15, choices=status_choices, default='new')
-    completion_date = models.DateField(auto_now=False, null=True, blank=True, verbose_name='Дата выполнения')
+    completion_date = models.DateField(auto_now=False, null=True, blank=True, verbose_name='Дэдлайн')
 
 
     def __str__(self):
@@ -15,5 +15,5 @@ class Task(models.Model):
 
     class Meta:
         db_table = 'tasks'
-        verbose_name = 'Задача'
-        verbose_name_plural = "Задачи"
+        verbose_name = 'Дело'
+        verbose_name_plural = "Дела"
