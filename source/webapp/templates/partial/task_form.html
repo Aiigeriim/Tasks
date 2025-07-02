@@ -1,7 +1,13 @@
 {% csrf_token %}
     <label>Наименование:</label><br/>
-    <input type="text" value="{{ task.name }}" name="name" required/>
-    <br/>
+
+{% if errors.name %}
+    <input class="border border-danger" type="text" value="{{ task.name }}" name="name"/>
+    <p class="text-danger">{{ errors.name }}</p>
+    {% else %}
+    <input type="text" value="{{ task.name }}" name="name"/>
+{% endif %}
+<br/>
     <label>Дэдлайн:</label><br/>
     <input type="date" id="mydate" name="mydate" value="{{ task.completion_date }}" min="2000-01-01" max="2100-12-31" placeholder="Выберите дату">
     <br/>

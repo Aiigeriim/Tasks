@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from webapp.models import Task, status_choices
+from webapp.validation import validate
 
 
 # Create your views here.
@@ -14,8 +15,19 @@ def create_task(request):
         description = request.POST.get('description')
         status = request.POST.get('status')
         completion_date = request.POST.get('mydate')
-        task = Task.objects.create(name=name, description=description, status=status, completion_date=completion_date)
-        return redirect('detail_task', pk=task.pk)
+        task = Task(name=name, description=description, status=status, completion_date=completion_date)
+
+        errors = validate(request.POST)
+        if errors:
+            context = {
+                'task': task,
+                'errors': errors,
+                "status_choices": status_choices
+            }
+            return render(request, 'create_task.html', context)
+        else:
+            task.save()
+            return redirect('detail_task', pk=task.pk)
     else:
         return render(request, 'create_task.html', {"status_choices": status_choices})
 
@@ -31,21 +43,28 @@ def delete_task(request, pk):
         }
         return render(request, 'delete_task.html', context)
 
-
-
 def update_task(request, *args, pk, **kwargs):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "POST":
+        errors = validate(request.POST)
         task.name = request.POST.get('name')
         task.description = request.POST.get('description')
         task.status = request.POST.get('status')
         task.completion_date = request.POST.get('mydate')
-        task.save()
+        if errors:
+            context = {
+                'task': task,
+                'status_choices': status_choices,
+                'errors': errors
+            }
+            return render(request, 'update_task.html', context)
+        else:
+            task.save()
         return redirect('detail_task', pk=task.pk)
     else:
         context = {
             'task': task,
-            'status_choices': status_choices,
+            'status_choices': status_choices
         }
         return render(request, 'update_task.html', context)
 
