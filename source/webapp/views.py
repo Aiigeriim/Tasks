@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+from webapp.forms import TaskForm
 from webapp.models import Task, status_choices
 from webapp.validation import validate
 
@@ -11,25 +13,20 @@ def index(request):
 
 def create_task(request):
     if request.method == "POST":
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        status = request.POST.get('status')
-        completion_date = request.POST.get('mydate')
-        task = Task(name=name, description=description, status=status, completion_date=completion_date)
-
-        errors = validate(request.POST)
-        if errors:
-            context = {
-                'task': task,
-                'errors': errors,
-                "status_choices": status_choices
-            }
-            return render(request, 'create_task.html', context)
-        else:
-            task.save()
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            description = form.cleaned_data.get('description')
+            status = form.cleaned_data.get('status')
+            completion_date = form.cleaned_data.get('completion_date')
+            task = Task.objects.create(name=name, description=description, status=status, completion_date=completion_date)
             return redirect('detail_task', pk=task.pk)
+        else:
+            return render(request, 'create_task.html', {'form': form})
+
     else:
-        return render(request, 'create_task.html', {"status_choices": status_choices})
+        form = TaskForm()
+        return render(request, 'create_task.html', {"form": form})
 
 def delete_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
@@ -46,27 +43,19 @@ def delete_task(request, pk):
 def update_task(request, *args, pk, **kwargs):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "POST":
-        errors = validate(request.POST)
-        task.name = request.POST.get('name')
-        task.description = request.POST.get('description')
-        task.status = request.POST.get('status')
-        task.completion_date = request.POST.get('mydate')
-        if errors:
-            context = {
-                'task': task,
-                'status_choices': status_choices,
-                'errors': errors
-            }
-            return render(request, 'update_task.html', context)
-        else:
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task.name = form.cleaned_data.get('name')
+            task.description = form.cleaned_data.get('description')
+            task.status = form.cleaned_data.get('status')
+            task.completion_date = form.cleaned_data.get('completion_date')
             task.save()
-        return redirect('detail_task', pk=task.pk)
+            return redirect('detail_task', pk=task.pk)
+        else:
+            return render(request, 'update_task.html', {'form': form})
     else:
-        context = {
-            'task': task,
-            'status_choices': status_choices
-        }
-        return render(request, 'update_task.html', context)
+        form = TaskForm(initial={'name': task.name, 'description': task.description, 'status': task.status, 'completion_date': task.completion_date})
+        return render(request, 'update_task.html', {'form': form})
 
 
 def detail_task(request, *args, pk, **kwargs):

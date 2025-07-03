@@ -10,4 +10,3 @@ urlpatterns = [
     path('task/<int:pk>/delete/', delete_task, name='delete_task'),
 
 ]
-delete_task
