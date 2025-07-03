@@ -1,31 +1,4 @@
 {% csrf_token %}
-{#    <label>Наименование:</label><br/>#}
-{##}
-{#{% if errors.name %}#}
-{#    <input class="border border-danger" type="text" value="{{ task.name }}" name="name"/>#}
-{#    <p class="text-danger">{{ errors.name }}</p>#}
-{#    {% else %}#}
-{#    <input type="text" value="{{ task.name }}" name="name"/>#}
-{#{% endif %}#}
-{#<br/>#}
-{#    <label>Дэдлайн:</label><br/>#}
-{#    <input type="date" id="mydate" name="date" value="{{ task.completion_date }}" min="2000-01-01" max="2100-12-31" placeholder="Выберите дату">#}
-{#    <br/>#}
-{#    <label>Описание:</label><br/>#}
-{#    <textarea name="description" rows="3" style="width: 50%; resize: vertical;">{{ task.description }}</textarea>#}
-{#    <br/>#}
-{#    <label>Статус:</label><br/>#}
-{#    <select name="status">#}
-{#        {% for status in status_choices %}#}
-{#        <option value="{{ status.0 }}">{{ status.1 }}</option>#}
-{#        {% endfor %}#}
-{#    </select><br/>#}
-{#    <br/>#}
-
-
-{#{% for error in form.non_field_errors %}#}
-{#   <p class="form-error">{{ error }}</p>#}
-{#{% endfor %}#}
 
 <p><label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label></p>
 {% for error in form.name.errors %}

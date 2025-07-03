@@ -63,4 +63,11 @@ def detail_task(request, *args, pk, **kwargs):
     return render(request, 'detail_task.html', {"task": task})
 
 
+def delete_all_tasks(request):
+    ids = request.POST.getlist('task_ids')
+    if ids:
+        Task.objects.filter(id__in=ids).delete()
+    return redirect('index')
+
+
 
