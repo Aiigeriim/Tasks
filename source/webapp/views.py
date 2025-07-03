@@ -2,10 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from webapp.forms import TaskForm
 from webapp.models import Task, status_choices
-from webapp.validation import validate
 
 
-# Create your views here.
 def index(request):
     tasks = Task.objects.order_by('completion_date')
     return render(request, 'index.html', {"tasks": tasks} )
@@ -61,6 +59,13 @@ def update_task(request, *args, pk, **kwargs):
 def detail_task(request, *args, pk, **kwargs):
     task = get_object_or_404(Task, id=pk)
     return render(request, 'detail_task.html', {"task": task})
+
+
+def delete_all_tasks(request):
+    ids = request.POST.getlist('task_ids')
+    if ids:
+        Task.objects.filter(id__in=ids).delete()
+    return redirect('index')
 
 
 
