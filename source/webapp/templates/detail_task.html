@@ -24,6 +24,15 @@
         <p style="white-space: pre-wrap;" > Описание - {{  task.description }}</p>
         <p>Дэдлайн - {{ task.completion_date }}</p>
         <hr/>
+        <p>Тэги:</p>
+    {% for tag in task.tags.all %}
+       {% if forloop.last %} {{ tag }}. {% else %} {{ tag }}, {% endif %}
+    {% endfor %}
+    <p>Комментарии:</p>
+    {% for comment in task.comments.all %}
+       <p>{{ comment.text }}</p>
+    {% endfor %}
+
     </div>
 
 

@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils import timezone
 
-from webapp.models import status_choices, Task
+from webapp.models import status_choices, Task, Tag
 
 
 class TaskForm(forms.ModelForm):
@@ -15,17 +15,21 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         # exclude = ('completion_date', 'published_at')
-        fields = ('name', 'description', 'status', 'completion_date', 'published_at')
+        fields = ('name', 'description', 'status', 'completion_date', 'published_at', 'tags')
         widgets = {
             'published_at':  widgets.DateTimeInput(
                 attrs={'type': 'datetime-local'}),
             'completion_date': widgets.DateInput(
-                attrs={'type': 'date'})
+                attrs={'type': 'date'}),
+            'tags': forms.ModelChoiceField(),
+            'comments': forms.Textarea(),
         }
         error_messages = {'title': {"required": "Пожалуйста, введите название"}}
 
     def clean_published_at(self):
         published_at = self.cleaned_data['published_at']
+        if not published_at:
+            raise ValidationError("заполните это поле")
         if published_at < timezone.now():
             raise ValidationError("This date is in the future")
         return published_at

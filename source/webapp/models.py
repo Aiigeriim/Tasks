@@ -23,6 +23,7 @@ class Task(BaseCreateUpdateModel):
         through='webapp.TaskTag',
         through_fields=('task', 'tag')
     )
+
     def __str__(self):
         return f"{self.id} - {self.name}"
 
