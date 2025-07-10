@@ -3,50 +3,26 @@ from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils import timezone
 
-from webapp.models import status_choices
-
-# def published_at_validate(value):
-#     if value < timezone.now():
-#         raise forms.ValidationError('This date is in the future')
+from webapp.models import status_choices, Task
 
 
-
-
-class TaskForm(forms.Form):
-    name = forms.CharField(
-        max_length=100,
-        required=True,
-        label="Название",
-        widget=widgets.Input(
-        attrs={'class': 'form-control'}),
-        error_messages={"required": "Пожалуйста, введите название"},
-
-    )
-    description = (forms.CharField(
-        widget=forms.Textarea(
-        attrs={"cols": "25", "rows": "5", "class": "form-control"}),
-        required=False,
-        label="Описание"))
-    status = forms.ChoiceField(
-        choices=status_choices,
-        label='Статус',
-        initial='new',
-        widget=forms.Select(
-        choices=status_choices,
-        attrs={'class': 'form-control'}))
-    completion_date = forms.DateField(
-        required=False,
-        label='Дэдлайн',
-        widget=forms.DateInput(
-            attrs={'type': 'date','class': 'form-control'}))
-
-    published_at = forms.DateTimeField(
-        required=False,
-        label='Дата публикации',
-        widget=forms.DateTimeInput(
-            attrs={'type': 'datetime-local', 'class': 'form-control'}),
-        # validators=[published_at_validate],
-    )
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        # exclude = ('completion_date', 'published_at')
+        fields = ('name', 'description', 'status', 'completion_date', 'published_at')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': widgets.Textarea(
+                attrs={"cols": "25", "rows": "5", "class": "form-control"}),
+            'status': widgets.Select(choices=status_choices,
+                 attrs={'class': 'form-control'}),
+            'published_at':  widgets.DateTimeInput(
+                attrs={'type': 'datetime-local', 'class': 'form-control'}),
+            'completion_date': widgets.DateInput(
+                attrs={'type': 'date','class': 'form-control'})
+        }
+        error_messages = {'title': {"required": "Пожалуйста, введите название"}}
 
     def clean_published_at(self):
         published_at = self.cleaned_data['published_at']

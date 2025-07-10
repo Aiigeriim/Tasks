@@ -5,13 +5,16 @@
 {% endblock %}
 
  {% block nav %}
+               <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'create_task' %}">Создать задачу</a>
+        </li>
  {% endblock %}
 
 {% block content %}
 
 <div class="mt-3">
-<h1> Редактировать дело</h1>
-<form action="" method="post">
+<h1> Редактировать</h1>
+<form action="" method="post" class="w-50 ms-auto me-auto mt-3">
   {% include 'partial/task_form.html' with btn_text='Редактировать' %}
 </form>
 </div>
