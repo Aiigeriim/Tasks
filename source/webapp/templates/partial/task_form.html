@@ -1,5 +1,9 @@
 {% csrf_token %}
 
+{% for error in form.non_field_errors %}
+   <p class="text-danger">{{ error }}</p>
+{% endfor %}
+
 <p><label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label></p>
 {% for error in form.name.errors %}
    <p class="text-danger">{{ error }}</p>
@@ -23,6 +27,12 @@
    <p class="text-danger">{{ error }}</p>
 {% endfor %}
 <p>{{ form.completion_date }}</p>
+
+<p><label for="{{ form.published_at.id_for_label }}">{{ form.published_at.label }}</label></p>
+{% for error in form.published_at.errors %}
+   <p class="text-danger">{{ error }}</p>
+{% endfor %}
+<p>{{ form.published_at }}</p>
 
      <input class="btn btn-success" type="submit" value="{{ btn_text }}"/>
 

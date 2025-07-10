@@ -17,7 +17,13 @@ def create_task(request):
             description = form.cleaned_data.get('description')
             status = form.cleaned_data.get('status')
             completion_date = form.cleaned_data.get('completion_date')
-            task = Task.objects.create(name=name, description=description, status=status, completion_date=completion_date)
+            published_at = form.cleaned_data.get('published_at')
+            task = Task.objects.create(
+                name=name,
+                description=description,
+                status=status,
+                completion_date=completion_date,
+                published_at=published_at)
             return redirect('detail_task', pk=task.pk)
         else:
             return render(request, 'create_task.html', {'form': form})
@@ -46,13 +52,19 @@ def update_task(request, *args, pk, **kwargs):
             task.name = form.cleaned_data.get('name')
             task.description = form.cleaned_data.get('description')
             task.status = form.cleaned_data.get('status')
+            task.published_at = form.cleaned_data.get('published_at')
             task.completion_date = form.cleaned_data.get('completion_date')
             task.save()
             return redirect('detail_task', pk=task.pk)
         else:
             return render(request, 'update_task.html', {'form': form})
     else:
-        form = TaskForm(initial={'name': task.name, 'description': task.description, 'status': task.status, 'completion_date': task.completion_date})
+        form = TaskForm(initial={
+            'name': task.name,
+            'description': task.description,
+            'status': task.status,
+            'completion_date': task.completion_date,
+            'published_at': task.published_at,})
         return render(request, 'update_task.html', {'form': form})
 
 
