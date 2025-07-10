@@ -7,20 +7,20 @@ from webapp.models import status_choices, Task
 
 
 class TaskForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(TaskForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = Task
         # exclude = ('completion_date', 'published_at')
         fields = ('name', 'description', 'status', 'completion_date', 'published_at')
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': widgets.Textarea(
-                attrs={"cols": "25", "rows": "5", "class": "form-control"}),
-            'status': widgets.Select(choices=status_choices,
-                 attrs={'class': 'form-control'}),
             'published_at':  widgets.DateTimeInput(
-                attrs={'type': 'datetime-local', 'class': 'form-control'}),
+                attrs={'type': 'datetime-local'}),
             'completion_date': widgets.DateInput(
-                attrs={'type': 'date','class': 'form-control'})
+                attrs={'type': 'date'})
         }
         error_messages = {'title': {"required": "Пожалуйста, введите название"}}
 
