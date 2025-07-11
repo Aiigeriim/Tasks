@@ -1,10 +1,30 @@
-# from django import forms
+from django import forms
+from django.core.exceptions import ValidationError
 # from django.core.exceptions import ValidationError
-# from django.forms import widgets
+from django.forms import widgets
 # from django.utils import timezone
 
-# from webapp.models import Task
+from webapp.models import Task
 
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['summary', 'description', 'status', 'type']
+        widgets = {
+            'summary': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-control'})
+        }
+        error_messages = {'summary': {"required": "Пожалуйста, введите название"}}
+
+    def clean(self):
+        summary = self.cleaned_data.get('name')
+        description = self.cleaned_data.get('description')
+        if summary and description and  summary == description:
+            raise ValidationError("Название и описание не могут быть одинаковыми")
+        return super(TaskForm, self).clean()
 
 # class TaskForm(forms.ModelForm):
     # def __init__(self, *args, **kwargs):

@@ -4,11 +4,11 @@
    <p class="text-danger">{{ error }}</p>
 {% endfor %}
 
-<p><label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label></p>
-{% for error in form.name.errors %}
+<p><label for="{{ form.summary.id_for_label }}">{{ form.summary.label }}</label></p>
+{% for error in form.summary.errors %}
    <p class="text-danger">{{ error }}</p>
 {% endfor %}
-<p>{{ form.name }}</p>
+<p>{{ form.summary }}</p>
 
 <p><label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label></p>
 {% for error in form.description.errors %}
@@ -22,11 +22,11 @@
 {% endfor %}
 <p>{{ form.status }}</p>
 
-<p><label for="{{ form.completion_date.id_for_label }}">{{ form.completion_date.label }}</label></p>
-{% for error in form.completion_date.errors %}
+<p><label for="{{ form.type.id_for_label }}">{{ form.type.label }}</label></p>
+{% for error in form.type.errors %}
    <p class="text-danger">{{ error }}</p>
 {% endfor %}
-<p>{{ form.completion_date }}</p>
+<p>{{ form.type }}</p>
 
 {#<p><label for="{{ form.published_at.id_for_label }}">{{ form.published_at.label }}</label></p>#}
 {#{% for error in form.published_at.errors %}#}

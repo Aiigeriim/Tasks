@@ -19,20 +19,15 @@
 {% block content %}
 
     <div class="task mt-3">
-        <h1>{{task.name}}</h1>
-        <p>Статус - {{  task.get_status_display }}</p>
+        <h1>{{task.summary}}</h1>
+        <p>Статус - {{  task.status.name }}</p>
         <p style="white-space: pre-wrap;" > Описание - {{  task.description }}</p>
         <p>Дэдлайн - {{ task.completion_date }}</p>
         <hr/>
-        <p>Тэги:</p>
-    {% for tag in task.tags.all %}
-       {% if forloop.last %} {{ tag }}. {% else %} {{ tag }}, {% endif %}
+        <p>Типы:</p>
+    {% for type in task.types.all %}
+       {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
     {% endfor %}
-    <p>Комментарии:</p>
-    {% for comment in task.comments.all %}
-       <p>{{ comment.text }}</p>
-    {% endfor %}
-
     </div>
 
 
