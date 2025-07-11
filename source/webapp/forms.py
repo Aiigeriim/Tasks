@@ -11,14 +11,15 @@ class TaskForm(forms.ModelForm):
             'summary': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
-            # 'type': forms.Select(attrs={'class': 'form-control'})
+            # 'type': forms.ModelChoiceField(queryset=TaskType.objects.all())
+            'type': forms.Select(attrs={'class': 'form-control'})
             # 'type': forms.FormChoiceField(queryset=TaskType.objects.all(), attrs={'class': 'form-control'})
-            'type' : forms.ModelMultipleChoiceField(
-                queryset=TaskType.objects.all(),
-                required=False,
-                widget=forms.CheckboxSelectMultiple(),
-                label='Типы'
-        )
+            # 'type' : forms.ModelMultipleChoiceField(
+            #     queryset=TaskType.objects.all(),
+            #     required=False,
+            #     widget=forms.CheckboxSelectMultiple(),
+            #     label='Типы'
+        # )
         }
         error_messages = {'summary': {"required": "Пожалуйста, введите название"}}
 
