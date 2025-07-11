@@ -15,8 +15,16 @@ class Task(BaseCreateUpdateModel):
     summary = models.CharField(max_length=50, verbose_name='Краткое описание')
     description = models.TextField(verbose_name='Полное описание', null=True, blank=True)
     status = models.ForeignKey('webapp.TaskStatus', related_name='statuses', on_delete=RESTRICT, verbose_name='Статус', default='new')
-    type = models.ForeignKey('webapp.TaskType', related_name='types', on_delete=RESTRICT, verbose_name='Тип')
+    # type = models.ForeignKey('webapp.TaskType', related_name='types', on_delete=RESTRICT, verbose_name='Тип')
 
+    type = models.ManyToManyField(
+        'webapp.TaskType',
+        related_name='tasks',
+        verbose_name='Типы',
+        blank=True,
+        through='webapp.TaskTypeRelation',
+        through_fields=('task', 'type')
+    )
     def __str__(self):
         return f"{self.id} - {self.summary}"
 
@@ -53,4 +61,6 @@ class TaskStatus(BaseCreateUpdateModel):
         verbose_name_plural = "Статусы"
 
 
-
+class TaskTypeRelation(BaseCreateUpdateModel):
+    task = models.ForeignKey('webapp.Task', related_name='task_types', on_delete=models.CASCADE)
+    type = models.ForeignKey('webapp.TaskType', related_name='type_tasks', on_delete=models.CASCADE)

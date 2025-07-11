@@ -3,12 +3,12 @@ from webapp.models import Task, TaskStatus, TaskType
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['id', 'summary', 'status']
+    list_display = ['id', 'summary', 'status', 'type']
     list_display_links = ['id', 'summary']
     list_filter = ['status']
     search_fields = ['summary']
     fields = ['summary', 'status', 'type', 'description' ]
-    #readonly_fields = ['completion_date']
+
 
 
 admin.site.register(Task, TaskAdmin)
