@@ -18,17 +18,24 @@
 
 {% block content %}
 
-    <div class="task mt-3">
-        <h1>{{task.summary}}</h1>
-        <p>Статус - {{  task.status.name }}</p>
-        <p style="white-space: pre-wrap;" > Описание - {{  task.description }}</p>
-        <p>Дэдлайн - {{ task.completion_date }}</p>
-        <hr/>
-        <p>Типы:</p>
-    {% for type in task.types.all %}
-       {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
-    {% endfor %}
-    </div>
+    <div class="card w-50 ms-auto me-auto mt-3" style="width: 18rem;">
+  <div class="card-body ">
+    <h5 class="card-title">{{task.summary}}</h5>
+    <p class="card-text">{{  task.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ task.type.name }}</li>
+    <li class="list-group-item">{{  task.status.name }}</li>
+    <li class="list-group-item">Добавлено: {{ task.created_at }}</li>
+      <li class="list-group-item">Обновлено: {{ task.updated_at }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+
+
 
 
 {% endblock %}
