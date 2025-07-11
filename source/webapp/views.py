@@ -6,11 +6,17 @@ from webapp.forms import TaskForm
 from webapp.models import Task
 
 
-class IndexView(View):
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
-    def get(self, request):
-        tasks = Task.objects.order_by('-created_at')
-        return render(request, 'index.html', {'tasks': tasks})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = Task.objects.order_by('-created_at')
+        return context
+
+    # def get(self, request):
+    #     tasks = Task.objects.order_by('-created_at')
+    #     return render(request, 'index.html', {'tasks': tasks})
 
 
 class CreateTaskView(View):
