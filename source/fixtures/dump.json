@@ -3,50 +3,135 @@
   "model": "webapp.task",
   "pk": 1,
   "fields": {
-    "name": "Выспаться",
-    "description": "Создай ритуал сна, как у малышей. Мозг должен понимать: «Ага, сейчас в спячку».\r\n\r\nВ одно и то же время — даже если это лишь 5–6 часов.\r\n\r\nБез экрана за 30–40 минут до сна (мозг думает, что день).\r\n\r\nТишина, маска на глаза, беруши, прохлада — если можешь.\r\n\r\nЗаменяй вечерние дела на утренние: вставай на 30 минут раньше, чем сидеть допоздна.",
-    "status": "new",
-    "completion_date": "2025-07-24"
+    "created_at": "2025-07-11T00:52:29.058Z",
+    "updated_at": "2025-07-11T00:52:29.058Z",
+    "summary": "Черногория",
+    "description": "Построить маршрут",
+    "status": 2,
+    "type": 4
   }
 },
 {
   "model": "webapp.task",
   "pk": 2,
   "fields": {
-    "name": "Переехать на Бали",
-    "description": "Собрать чемоданы и в неизвестность...",
-    "status": "new",
-    "completion_date": "2025-12-25"
+    "created_at": "2025-07-11T00:53:20.136Z",
+    "updated_at": "2025-07-11T00:57:12.752Z",
+    "summary": "Продумать график на след месяц",
+    "description": "уменьшить смены",
+    "status": 2,
+    "type": 1
   }
 },
 {
   "model": "webapp.task",
   "pk": 3,
   "fields": {
-    "name": "Снова научиться водить",
-    "description": "Взять каршеринг\r\nВыезд в 3 утра.\r\nГаз в пол по садовому кольцу",
-    "status": "new",
-    "completion_date": "2025-08-20"
+    "created_at": "2025-07-11T00:53:56.381Z",
+    "updated_at": "2025-07-11T00:53:56.381Z",
+    "summary": "Подготовка к контрольной",
+    "description": "пересмотреть урок",
+    "status": 3,
+    "type": 2
   }
 },
 {
   "model": "webapp.task",
   "pk": 4,
   "fields": {
-    "name": "Посетить незнакомый город",
-    "description": "В города и горы Кавказа",
-    "status": "in_progress",
-    "completion_date": "2025-08-17"
+    "created_at": "2025-07-11T00:54:58.713Z",
+    "updated_at": "2025-07-11T00:54:58.713Z",
+    "summary": "Обследование",
+    "description": "",
+    "status": 1,
+    "type": 3
   }
 },
 {
   "model": "webapp.task",
   "pk": 5,
   "fields": {
-    "name": "Побывать в Каппадокии",
-    "description": "23 октября 2019 год",
-    "status": "done",
-    "completion_date": "2019-10-23"
+    "created_at": "2025-07-11T00:58:19.942Z",
+    "updated_at": "2025-07-11T00:58:19.942Z",
+    "summary": "Отдохнуть",
+    "description": "сутки без телефона, без ноута, тишина",
+    "status": 2,
+    "type": 3
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 6,
+  "fields": {
+    "created_at": "2025-07-11T00:59:14.787Z",
+    "updated_at": "2025-07-11T00:59:14.787Z",
+    "summary": "Питер",
+    "description": "",
+    "status": 1,
+    "type": 4
+  }
+},
+{
+  "model": "webapp.tasktype",
+  "pk": 1,
+  "fields": {
+    "created_at": "2025-07-11T00:48:19.386Z",
+    "updated_at": "2025-07-11T00:48:19.386Z",
+    "name": "Работа"
+  }
+},
+{
+  "model": "webapp.tasktype",
+  "pk": 2,
+  "fields": {
+    "created_at": "2025-07-11T00:48:27.839Z",
+    "updated_at": "2025-07-11T00:48:27.839Z",
+    "name": "Учеба"
+  }
+},
+{
+  "model": "webapp.tasktype",
+  "pk": 3,
+  "fields": {
+    "created_at": "2025-07-11T00:48:36.286Z",
+    "updated_at": "2025-07-11T00:48:36.286Z",
+    "name": "Здоровье"
+  }
+},
+{
+  "model": "webapp.tasktype",
+  "pk": 4,
+  "fields": {
+    "created_at": "2025-07-11T00:48:48.438Z",
+    "updated_at": "2025-07-11T00:48:48.438Z",
+    "name": "Путешествия"
+  }
+},
+{
+  "model": "webapp.taskstatus",
+  "pk": 1,
+  "fields": {
+    "created_at": "2025-07-11T00:45:37.211Z",
+    "updated_at": "2025-07-11T00:45:37.211Z",
+    "name": "новый"
+  }
+},
+{
+  "model": "webapp.taskstatus",
+  "pk": 2,
+  "fields": {
+    "created_at": "2025-07-11T00:45:44.515Z",
+    "updated_at": "2025-07-11T00:45:44.515Z",
+    "name": "в процессе"
+  }
+},
+{
+  "model": "webapp.taskstatus",
+  "pk": 3,
+  "fields": {
+    "created_at": "2025-07-11T00:45:52.225Z",
+    "updated_at": "2025-07-11T00:45:52.225Z",
+    "name": "выполнено"
   }
 }
 ]
