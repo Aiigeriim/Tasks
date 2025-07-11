@@ -47,19 +47,36 @@ def delete_task(request, pk):
         }
         return render(request, 'delete_task.html', context)
 
-def update_task(request, *args, pk, **kwargs):
-    task = get_object_or_404(Task, pk=pk)
-    if request.method == "POST":
+class UpdateTaskView(View):
+    def post(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             task = form.save()
-            task.tags.set(form.cleaned_data['tags'])
             return redirect('detail_task', pk=task.pk)
         else:
             return render(request, 'update_task.html', {'form': form})
-    else:
-        form = TaskForm(instance=task, initial={'tags': task.tags.all})
+
+
+    def get(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        form = TaskForm(instance=task)
         return render(request, 'update_task.html', {'form': form})
+
+
+# def update_task(request, *args, pk, **kwargs):
+#     task = get_object_or_404(Task, pk=pk)
+#     if request.method == "POST":
+#         form = TaskForm(request.POST, instance=task)
+#         if form.is_valid():
+#             task = form.save()
+#             task.tags.set(form.cleaned_data['tags'])
+#             return redirect('detail_task', pk=task.pk)
+#         else:
+#             return render(request, 'update_task.html', {'form': form})
+#     else:
+#         form = TaskForm(instance=task, initial={'tags': task.tags.all})
+#         return render(request, 'update_task.html', {'form': form})
 
 
 
