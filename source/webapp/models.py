@@ -15,8 +15,6 @@ class Task(BaseCreateUpdateModel):
     summary = models.CharField(max_length=50, verbose_name='Краткое описание')
     description = models.TextField(verbose_name='Полное описание', null=True, blank=True)
     status = models.ForeignKey('webapp.TaskStatus', related_name='statuses', on_delete=RESTRICT, verbose_name='Статус', default='new')
-    # type = models.ForeignKey('webapp.TaskType', related_name='types', on_delete=RESTRICT, verbose_name='Тип')
-
     type = models.ManyToManyField(
         'webapp.TaskType',
         related_name='tasks',
