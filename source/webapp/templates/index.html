@@ -20,9 +20,17 @@
               </label>
             </div>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.status.name }}</h6>
-            <a href="{% url 'detail_task' task.pk %}" class="card-link">Подробности</a>
-            <a href="{% url 'update_task' task.pk %}" class="card-link">Редактировать</a>
-            <a href="{% url 'delete_task' task.pk %}" class="card-link text-danger">Удалить</a>
+
+  <div class="btn-group btn-end" role="group">
+    <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Действие
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'detail_task' task.pk %}">Подробности</a></li>
+      <li><a class="dropdown-item" href="{% url 'update_task' task.pk %}">Редактировать</a></li>
+      <li><a class="dropdown-item" href="{% url 'delete_task' task.pk %}">Удалить</a></li>
+    </ul>
+  </div>
           </div>
         </div>
       </div>
