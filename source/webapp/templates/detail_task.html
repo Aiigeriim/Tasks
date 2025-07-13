@@ -4,7 +4,7 @@
     	<title>Details</title>
     {% endblock %}
 
-{% block nav %}
+{% block navbar %}
     <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'create_task' %}">Создать</a>
         </li>
@@ -24,18 +24,13 @@
     <p class="card-text">{{  task.description }}</p>
   </div>
   <ul class="list-group list-group-flush">
-          {% for type in task.types.all %}
-       {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
-    {% endfor %}
-
-{#    <li class="list-group-item">Тип(ы): {{ task.type.name }}</li>#}
     <li class="list-group-item">Статус: {{  task.status.name }}</li>
     <li class="list-group-item">Добавлено: {{ task.created_at }}</li>
       <li class="list-group-item">Обновлено: {{ task.updated_at }}</li>
+       <p class="list-group-item">Типы: {% for type in task.type.all %}
+      {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
+    {% endfor %}</p>
   </ul>
-    <p> Тип(ы):</p>
-       {% for type in task.types.all %}
-       {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
-    {% endfor %}
+
 </div>
 {% endblock %}
