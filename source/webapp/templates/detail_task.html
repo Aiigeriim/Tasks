@@ -34,7 +34,7 @@
       <li class="list-group-item">Обновлено: {{ task.updated_at }}</li>
   </ul>
     <p> Тип(ы):</p>
-       {% for type in task.types.all %}
+       {% for type in task.type.all %}
        {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
     {% endfor %}
 </div>

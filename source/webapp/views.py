@@ -46,7 +46,7 @@ class UpdateTaskView(View):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             task = form.save()
-            task.types.set(form.cleaned_data['type'])
+            task.type.set(form.cleaned_data['type'])
             return redirect('detail_task', pk=task.pk)
         else:
             return render(request, 'update_task.html', {'form': form})
