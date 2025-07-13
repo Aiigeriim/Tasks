@@ -9,6 +9,7 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple()
     )
 
+
     class Meta:
         model = Task
         fields = ['summary', 'description', 'status', 'type']
