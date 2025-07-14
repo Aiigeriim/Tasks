@@ -18,24 +18,28 @@
 
 {% block content %}
 
-    <div class="card w-50 ms-auto me-auto mt-3" style="width: 18rem;">
-  <div class="card-body ">
-    <h5 class="card-title">{{task.summary}}</h5>
-    <p class="card-text">{{  task.description }}</p>
+   <div class="card mt-3">
+  <div class="card-header">
+    <strong>{{task.summary}}</strong>
   </div>
-  <ul class="list-group list-group-flush">
-          {% for type in task.types.all %}
-       {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
-    {% endfor %}
-
-{#    <li class="list-group-item">Тип(ы): {{ task.type.name }}</li>#}
-    <li class="list-group-item">Статус: {{  task.status.name }}</li>
-    <li class="list-group-item">Добавлено: {{ task.created_at }}</li>
-      <li class="list-group-item">Обновлено: {{ task.updated_at }}</li>
-       <p class="list-group-item">Типы: {% for type in task.type.all %}
-      {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}
-    {% endfor %}</p>
-  </ul>
-
+  <div class="card-body">
+    <figure>
+      <blockquote class="blockquote">
+        <p>{{  task.description }}</p>
+      </blockquote>
+      <figcaption class="blockquote-footer mt-3">
+        Статус: <cite title="Статус">{{ task.status.name }}</cite>
+      </figcaption>
+        <figcaption class="blockquote-footer">
+       Добавлено:  <cite title="Добавлено">{{ task.created_at }}</cite>
+      </figcaption>
+        <figcaption class="blockquote-footer">
+       Обновлено: <cite title="Добавлено">{{ task.updated_at }}</cite>
+      </figcaption>
+    <figcaption class="blockquote-footer">
+       Типы: <cite title="Типы">{% for type in task.type.all %} {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}{% endfor %}</cite>
+      </figcaption>
+    </figure>
+  </div>
 </div>
 {% endblock %}
