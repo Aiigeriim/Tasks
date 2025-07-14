@@ -4,11 +4,10 @@
   "pk": 1,
   "fields": {
     "created_at": "2025-07-11T00:52:29.058Z",
-    "updated_at": "2025-07-11T00:52:29.058Z",
+    "updated_at": "2025-07-13T21:43:10.378Z",
     "summary": "Черногория",
     "description": "Построить маршрут",
-    "status": 2,
-    "type": 4
+    "status": 2
   }
 },
 {
@@ -16,23 +15,10 @@
   "pk": 2,
   "fields": {
     "created_at": "2025-07-11T00:53:20.136Z",
-    "updated_at": "2025-07-11T00:57:12.752Z",
+    "updated_at": "2025-07-13T21:45:51.942Z",
     "summary": "Продумать график на след месяц",
     "description": "уменьшить смены",
-    "status": 2,
-    "type": 1
-  }
-},
-{
-  "model": "webapp.task",
-  "pk": 3,
-  "fields": {
-    "created_at": "2025-07-11T00:53:56.381Z",
-    "updated_at": "2025-07-11T00:53:56.381Z",
-    "summary": "Подготовка к контрольной",
-    "description": "пересмотреть урок",
-    "status": 3,
-    "type": 2
+    "status": 3
   }
 },
 {
@@ -40,11 +26,10 @@
   "pk": 4,
   "fields": {
     "created_at": "2025-07-11T00:54:58.713Z",
-    "updated_at": "2025-07-11T00:54:58.713Z",
+    "updated_at": "2025-07-13T14:52:16.159Z",
     "summary": "Обследование",
     "description": "",
-    "status": 1,
-    "type": 3
+    "status": 1
   }
 },
 {
@@ -52,11 +37,10 @@
   "pk": 5,
   "fields": {
     "created_at": "2025-07-11T00:58:19.942Z",
-    "updated_at": "2025-07-11T00:58:19.942Z",
-    "summary": "Отдохнуть",
-    "description": "сутки без телефона, без ноута, тишина",
-    "status": 2,
-    "type": 3
+    "updated_at": "2025-07-14T18:33:25.567Z",
+    "summary": "Отдохнуть!!!",
+    "description": "Отдохнуть!!!",
+    "status": 2
   }
 },
 {
@@ -64,11 +48,120 @@
   "pk": 6,
   "fields": {
     "created_at": "2025-07-11T00:59:14.787Z",
-    "updated_at": "2025-07-11T00:59:14.787Z",
+    "updated_at": "2025-07-13T15:02:33.328Z",
     "summary": "Питер",
+    "description": "сходить туда, куда не успела в предыдущий раз",
+    "status": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 33,
+  "fields": {
+    "created_at": "2025-07-13T21:16:44.152Z",
+    "updated_at": "2025-07-14T19:56:21.226Z",
+    "summary": "Летим на Бали",
+    "description": "Серфинг!!!!",
+    "status": 2
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 34,
+  "fields": {
+    "created_at": "2025-07-13T21:19:05.079Z",
+    "updated_at": "2025-07-13T21:19:05.079Z",
+    "summary": "Подготовка к контрольной",
+    "description": "пересмотреть урок",
+    "status": 3
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 35,
+  "fields": {
+    "created_at": "2025-07-13T21:54:11.337Z",
+    "updated_at": "2025-07-14T20:21:12.214Z",
+    "summary": "аааааааааа",
+    "description": "аааааааааа",
+    "status": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 36,
+  "fields": {
+    "created_at": "2025-07-13T22:37:40.757Z",
+    "updated_at": "2025-07-13T22:37:40.757Z",
+    "summary": "задача 1",
     "description": "",
-    "status": 1,
-    "type": 4
+    "status": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 37,
+  "fields": {
+    "created_at": "2025-07-13T22:37:58.523Z",
+    "updated_at": "2025-07-13T22:37:58.523Z",
+    "summary": "задача 2",
+    "description": "",
+    "status": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 38,
+  "fields": {
+    "created_at": "2025-07-13T22:38:13.712Z",
+    "updated_at": "2025-07-14T18:32:43.503Z",
+    "summary": "задача 333",
+    "description": "задача 333",
+    "status": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 41,
+  "fields": {
+    "created_at": "2025-07-14T19:55:33.490Z",
+    "updated_at": "2025-07-14T19:55:33.490Z",
+    "summary": "Мурманск",
+    "description": "Северное сияние, киты",
+    "status": 1
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 42,
+  "fields": {
+    "created_at": "2025-07-14T20:02:02.308Z",
+    "updated_at": "2025-07-14T20:02:02.308Z",
+    "summary": "Разобрать тему ORM в Django",
+    "description": "Подружиться с shell",
+    "status": 2
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 43,
+  "fields": {
+    "created_at": "2025-07-14T20:04:24.548Z",
+    "updated_at": "2025-07-14T20:04:24.548Z",
+    "summary": "Сходить в спа",
+    "description": "Полежать в бочке\r\nЗабыть телефон дома",
+    "status": 2
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 44,
+  "fields": {
+    "created_at": "2025-07-14T20:19:06.993Z",
+    "updated_at": "2025-07-14T20:19:47.671Z",
+    "summary": "Организовать семейный ужин",
+    "description": "Спешное мероприятие с высоким риском: не язвить, не сарказничать — просто поесть. Желательно в тишине и без допросов.\r\nСемейный вечер, где цель не просто поесть, а выжить. Просто еда. Просто семья. Просто ад на два часа. В бой идут не только старые обиды, но и селёдка под шубой. Битва взглядов, вздохов, упрёков и философских тостов. Спастись можно только через кухню и окно.",
+    "status": 3
   }
 },
 {
@@ -108,6 +201,24 @@
   }
 },
 {
+  "model": "webapp.tasktype",
+  "pk": 5,
+  "fields": {
+    "created_at": "2025-07-13T14:44:40.165Z",
+    "updated_at": "2025-07-13T14:44:40.165Z",
+    "name": "Отдых"
+  }
+},
+{
+  "model": "webapp.tasktype",
+  "pk": 6,
+  "fields": {
+    "created_at": "2025-07-13T14:45:09.514Z",
+    "updated_at": "2025-07-13T14:45:09.514Z",
+    "name": "Семья"
+  }
+},
+{
   "model": "webapp.taskstatus",
   "pk": 1,
   "fields": {
@@ -132,6 +243,266 @@
     "created_at": "2025-07-11T00:45:52.225Z",
     "updated_at": "2025-07-11T00:45:52.225Z",
     "name": "выполнено"
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 10,
+  "fields": {
+    "created_at": "2025-07-13T14:43:55.622Z",
+    "updated_at": "2025-07-13T14:43:55.622Z",
+    "task": 6,
+    "type": 4
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 14,
+  "fields": {
+    "created_at": "2025-07-13T14:51:49.713Z",
+    "updated_at": "2025-07-13T14:51:49.713Z",
+    "task": 2,
+    "type": 1
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 15,
+  "fields": {
+    "created_at": "2025-07-13T14:52:02.152Z",
+    "updated_at": "2025-07-13T14:52:02.152Z",
+    "task": 5,
+    "type": 4
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 16,
+  "fields": {
+    "created_at": "2025-07-13T14:52:02.152Z",
+    "updated_at": "2025-07-13T14:52:02.152Z",
+    "task": 5,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 17,
+  "fields": {
+    "created_at": "2025-07-13T14:52:16.164Z",
+    "updated_at": "2025-07-13T14:52:16.164Z",
+    "task": 4,
+    "type": 3
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 18,
+  "fields": {
+    "created_at": "2025-07-13T14:52:16.164Z",
+    "updated_at": "2025-07-13T14:52:16.164Z",
+    "task": 4,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 19,
+  "fields": {
+    "created_at": "2025-07-13T14:52:28.822Z",
+    "updated_at": "2025-07-13T14:52:28.822Z",
+    "task": 1,
+    "type": 4
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 20,
+  "fields": {
+    "created_at": "2025-07-13T14:52:28.822Z",
+    "updated_at": "2025-07-13T14:52:28.822Z",
+    "task": 1,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 57,
+  "fields": {
+    "created_at": "2025-07-13T21:16:44.165Z",
+    "updated_at": "2025-07-13T21:16:44.165Z",
+    "task": 33,
+    "type": 3
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 58,
+  "fields": {
+    "created_at": "2025-07-13T21:16:44.165Z",
+    "updated_at": "2025-07-13T21:16:44.165Z",
+    "task": 33,
+    "type": 4
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 59,
+  "fields": {
+    "created_at": "2025-07-13T21:16:44.165Z",
+    "updated_at": "2025-07-13T21:16:44.165Z",
+    "task": 33,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 60,
+  "fields": {
+    "created_at": "2025-07-13T21:19:05.086Z",
+    "updated_at": "2025-07-13T21:19:05.086Z",
+    "task": 34,
+    "type": 2
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 61,
+  "fields": {
+    "created_at": "2025-07-13T21:43:10.384Z",
+    "updated_at": "2025-07-13T21:43:10.384Z",
+    "task": 1,
+    "type": 6
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 62,
+  "fields": {
+    "created_at": "2025-07-13T21:54:11.344Z",
+    "updated_at": "2025-07-13T21:54:11.344Z",
+    "task": 35,
+    "type": 3
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 63,
+  "fields": {
+    "created_at": "2025-07-13T22:37:40.776Z",
+    "updated_at": "2025-07-13T22:37:40.776Z",
+    "task": 36,
+    "type": 2
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 64,
+  "fields": {
+    "created_at": "2025-07-13T22:37:58.538Z",
+    "updated_at": "2025-07-13T22:37:58.538Z",
+    "task": 37,
+    "type": 1
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 65,
+  "fields": {
+    "created_at": "2025-07-13T22:37:58.538Z",
+    "updated_at": "2025-07-13T22:37:58.538Z",
+    "task": 37,
+    "type": 2
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 66,
+  "fields": {
+    "created_at": "2025-07-13T22:38:13.727Z",
+    "updated_at": "2025-07-13T22:38:13.727Z",
+    "task": 38,
+    "type": 2
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 67,
+  "fields": {
+    "created_at": "2025-07-14T18:33:25.573Z",
+    "updated_at": "2025-07-14T18:33:25.573Z",
+    "task": 5,
+    "type": 3
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 68,
+  "fields": {
+    "created_at": "2025-07-14T19:55:33.500Z",
+    "updated_at": "2025-07-14T19:55:33.500Z",
+    "task": 41,
+    "type": 4
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 69,
+  "fields": {
+    "created_at": "2025-07-14T19:55:33.500Z",
+    "updated_at": "2025-07-14T19:55:33.500Z",
+    "task": 41,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 70,
+  "fields": {
+    "created_at": "2025-07-14T20:02:02.314Z",
+    "updated_at": "2025-07-14T20:02:02.314Z",
+    "task": 42,
+    "type": 2
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 71,
+  "fields": {
+    "created_at": "2025-07-14T20:04:24.555Z",
+    "updated_at": "2025-07-14T20:04:24.555Z",
+    "task": 43,
+    "type": 3
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 72,
+  "fields": {
+    "created_at": "2025-07-14T20:04:24.555Z",
+    "updated_at": "2025-07-14T20:04:24.555Z",
+    "task": 43,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 73,
+  "fields": {
+    "created_at": "2025-07-14T20:19:06.999Z",
+    "updated_at": "2025-07-14T20:19:06.999Z",
+    "task": 44,
+    "type": 5
+  }
+},
+{
+  "model": "webapp.tasktyperelation",
+  "pk": 74,
+  "fields": {
+    "created_at": "2025-07-14T20:19:06.999Z",
+    "updated_at": "2025-07-14T20:19:06.999Z",
+    "task": 44,
+    "type": 6
   }
 }
 ]

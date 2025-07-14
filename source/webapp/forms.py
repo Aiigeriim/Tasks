@@ -18,17 +18,18 @@ class TaskForm(forms.ModelForm):
         widgets = {
             'type': forms.CheckboxSelectMultiple()
         }
-        error_messages = {'summary': {"required": "Пожалуйста, введите название"}}
+        error_messages = {
+            'summary': {"required": "Пожалуйста, введите название"},
+        }
 
     def clean_summary(self):
         summary = self.cleaned_data['summary']
         if len(summary) < 5:
-            raise ValidationError("Это поле должно состоять из более 5 символов")
+            raise ValidationError("Краткое описание должно состоять из более 5 символов")
         return summary
 
     def clean(self):
-        summary = self.cleaned_data.get('summary')
         description = self.cleaned_data.get('description')
-        if summary and description and  summary == description:
-            raise ValidationError("Описания не могут быть одинаковыми")
+        if len(description) < 10:
+            raise ValidationError("Полное описание должно состоять из более 10 символов")
         return super(TaskForm, self).clean()
