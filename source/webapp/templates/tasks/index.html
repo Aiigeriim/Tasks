@@ -6,7 +6,7 @@
 
 {% block content %}
 
-
+{% include 'partial/simple_search.html' with form=search_form %}
 
 <form method="post" action="{% url 'delete_all_tasks' %}">
   {% csrf_token %}
@@ -40,5 +40,9 @@
     <button type="submit" class="btn btn-danger">Удалить выбранные задачи</button>
   </div>
 </form>
+    <br>
+{% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+    {% endif %}
 
 {% endblock %}
