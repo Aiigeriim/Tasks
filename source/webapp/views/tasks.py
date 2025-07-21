@@ -6,8 +6,8 @@ from webapp.forms import TaskForm
 from webapp.models import Task
 
 
-class IndexView(TemplateView):
-    template_name = 'index.html'
+class TaskListView(TemplateView):
+    template_name = 'tasks/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -16,7 +16,7 @@ class IndexView(TemplateView):
 
 
 class CreateTaskView(FormView):
-    template_name = 'create_task.html'
+    template_name = 'tasks/create_task.html'
     form_class = TaskForm
 
     def form_valid(self, form):
@@ -25,7 +25,7 @@ class CreateTaskView(FormView):
 
 
 class UpdateTaskView(FormView):
-    template_name = 'update_task.html'
+    template_name = 'tasks/update_task.html'
     form_class = TaskForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -56,12 +56,12 @@ class DeleteTaskView(View):
         return redirect('index')
 
     def get(self, request, pk):
-        return render(request, 'delete_task.html', {'pk': pk})
+        return render(request, 'tasks/delete_task.html', {'pk': pk})
 
 
 
 class DetailTaskView(TemplateView):
-    template_name = 'detail_task.html'
+    template_name = 'tasks/detail_task.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.task = get_object_or_404(Task, pk=self.kwargs.get('pk'))
