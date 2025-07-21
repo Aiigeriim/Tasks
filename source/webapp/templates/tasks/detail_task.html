@@ -36,8 +36,11 @@
         <figcaption class="blockquote-footer">
        Обновлено: <cite title="Добавлено">{{ task.updated_at }}</cite>
       </figcaption>
+{#    <figcaption class="blockquote-footer">#}
+{#       Типы: <cite title="Типы">{% for type in task.type.all %} {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}{% endfor %}</cite>#}
+{#      </figcaption>#}
     <figcaption class="blockquote-footer">
-       Типы: <cite title="Типы">{% for type in task.type.all %} {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}{% endfor %}</cite>
+       Типы: <cite title="Типы">{% for type in types %} {% if forloop.last %} {{ type }}. {% else %} {{ type }}, {% endif %}{% endfor %}</cite>
       </figcaption>
     </figure>
   </div>

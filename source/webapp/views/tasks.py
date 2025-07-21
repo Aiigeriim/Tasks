@@ -1,10 +1,9 @@
-
-
 from django.db.models import Q
+from django.db.models.expressions import result
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
 from django.views import View
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import FormView, ListView, DetailView
 from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
 
@@ -13,7 +12,7 @@ class TaskListView(ListView):
     model = Task
     context_object_name = "tasks"
     ordering = ("-created_at")
-    paginate_by = 2
+    paginate_by = 5
     paginated_orphans = 1
 
     def dispatch(self, request, *args, **kwargs):
@@ -41,15 +40,6 @@ class TaskListView(ListView):
     def get_search_value(self):
         if self.form.is_valid():
             return self.form.cleaned_data["search"]
-
-# class TaskListView(TemplateView):
-#     template_name = 'tasks/index.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['tasks'] = Task.objects.order_by('-created_at')
-#         return context
-
 
 class CreateTaskView(FormView):
     template_name = 'tasks/create_task.html'
@@ -95,17 +85,15 @@ class DeleteTaskView(View):
         return render(request, 'tasks/delete_task.html', {'pk': pk})
 
 
-class DetailTaskView(TemplateView):
+class DetailTaskView(DetailView):
     template_name = 'tasks/detail_task.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        self.task = get_object_or_404(Task, pk=self.kwargs.get('pk'))
-        return super().dispatch(request, *args, **kwargs)
+    model = Task
+    pk_url_kwarg = 'pk'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['task'] = self.task
-        return context
+        result = super().get_context_data(**kwargs)
+        result['types'] = self.object.type.order_by('-created_at')
+        return result
 
 def delete_all_tasks(request):
     ids = request.POST.getlist('task_ids')
