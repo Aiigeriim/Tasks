@@ -28,4 +28,4 @@ class Task(BaseCreateUpdateModel):
 
 
     def get_absolute_url(self):
-        return reverse('detail_task', kwargs={'pk': self.pk})
+        return reverse('webapp:detail_task', kwargs={'pk': self.pk})

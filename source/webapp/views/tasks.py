@@ -47,15 +47,6 @@ class CreateTaskView(CreateView):
     form_class = TaskForm
 
 
-
-    # def get_success_url(self):
-    #     return reverse('detail_task', kwargs={'pk': self.object.pk})
-
-    # def form_valid(self, form):
-    #     task = form.save()
-    #     return  redirect('detail_task', pk=task.pk)
-
-
 class UpdateTaskView(FormView):
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
@@ -79,13 +70,13 @@ class UpdateTaskView(FormView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('detail_task', pk=self.task.pk)
+        return redirect('webapp:detail_task', pk=self.task.pk)
 
 class DeleteTaskView(View):
     def post(self, request, pk):
         task = get_object_or_404(Task, pk=pk)
         task.delete()
-        return redirect('index')
+        return redirect('webapp:index')
 
     def get(self, request, pk):
         return render(request, 'tasks/delete_task.html', {'pk': pk})
@@ -102,10 +93,10 @@ class DetailTaskView(DetailView):
         return result
 
 def delete_all_tasks(request):
-    ids = request.POST.getlist('task_ids')
+    ids = request.POST.getlist('webapp:task_ids')
     if ids:
         Task.objects.filter(id__in=ids).delete()
-    return redirect('index')
+    return redirect('webapp:index')
 
 
 

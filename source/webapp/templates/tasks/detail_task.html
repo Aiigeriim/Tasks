@@ -6,13 +6,13 @@
 
 {% block navbar %}
     <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'create_task' %}">Создать</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'webapp:create_task' %}">Создать</a>
         </li>
     <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'update_task' task.pk %}">Редактировать</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'webapp:update_task' task.pk %}">Редактировать</a>
         </li>
     <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'delete_task' task.pk %}">Удалить</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'webapp:delete_task' task.pk %}">Удалить</a>
         </li>
           {% endblock %}
 

@@ -5,7 +5,7 @@
     <form method="POST">
      {% csrf_token %}
     <p>Вы уверены, что хотите удалить задачу {{ task.summary }}?</p>
-     <a class="btn btn-success" href="{% url 'index' %}">Отмена</a>
+     <a class="btn btn-success" href="{% url 'webapp:index' %}">Отмена</a>
     <button class="btn btn-danger"  type="submit">Да</button>
     </form>
 

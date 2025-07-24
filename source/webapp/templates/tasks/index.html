@@ -8,7 +8,7 @@
 
 {% include 'partial/simple_search.html' with form=search_form %}
 
-<form method="post" action="{% url 'delete_all_tasks' %}">
+<form method="post" action="{% url 'webapp:delete_all_tasks' %}">
   {% csrf_token %}
   <div class="row mt-4">
     {% for task in tasks %}
@@ -25,9 +25,9 @@
             <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.status.name }}</h6>
 
                <div class="card-footer bg-transparent">
-                   <a href="{% url 'detail_task' task.pk %}" title="Подробности"><i class="bi bi-info-square"></i></a>
-            <a href="{% url 'update_task' task.pk %}" title="Редактировать"> <i class="bi bi-pencil-square"></i></a>
-            <a href="{% url 'delete_task' task.pk %}" title="Удалить"><i class="bi bi-x-square-fill"></i></a>
+                   <a href="{% url 'webapp:detail_task' task.pk %}" title="Подробности"><i class="bi bi-info-square"></i></a>
+            <a href="{% url 'webapp:update_task' task.pk %}" title="Редактировать"> <i class="bi bi-pencil-square"></i></a>
+            <a href="{% url 'webapp:delete_task' task.pk %}" title="Удалить"><i class="bi bi-x-square-fill"></i></a>
                </div>
           </div>
         </div>
