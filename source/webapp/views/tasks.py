@@ -16,6 +16,7 @@ class TaskListView(ListView):
     paginated_orphans = 1
 
     def dispatch(self, request, *args, **kwargs):
+        print(request.user)
         self.form = self.get_search_form()
         self.search_value = self.get_search_value()
         return super().dispatch(request, *args, **kwargs)
