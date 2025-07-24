@@ -7,7 +7,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'summary']
     list_filter = ['status']
     search_fields = ['summary']
-    fields = ['summary', 'status', 'description' ]
+    fields = ['summary', 'status', 'description']
 
 
 

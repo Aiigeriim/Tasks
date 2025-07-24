@@ -1,9 +1,9 @@
 from django.db.models import Q
-from django.db.models.expressions import result
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.utils.http import urlencode
 from django.views import View
-from django.views.generic import FormView, ListView, DetailView
+from django.views.generic import FormView, ListView, DetailView, CreateView
 from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
 
@@ -41,13 +41,18 @@ class TaskListView(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data["search"]
 
-class CreateTaskView(FormView):
+class CreateTaskView(CreateView):
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
 
-    def form_valid(self, form):
-        task = form.save()
-        return  redirect('detail_task', pk=task.pk)
+
+
+    # def get_success_url(self):
+    #     return reverse('detail_task', kwargs={'pk': self.object.pk})
+
+    # def form_valid(self, form):
+    #     task = form.save()
+    #     return  redirect('detail_task', pk=task.pk)
 
 
 class UpdateTaskView(FormView):

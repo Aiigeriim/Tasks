@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import RESTRICT
+from django.urls import reverse
 
 from webapp.models.base_create_update import BaseCreateUpdateModel
 
@@ -24,3 +25,7 @@ class Task(BaseCreateUpdateModel):
         db_table = 'tasks'
         verbose_name = 'Задача'
         verbose_name_plural = "Задачи"
+
+
+    def get_absolute_url(self):
+        return reverse('detail_task', kwargs={'pk': self.pk})
