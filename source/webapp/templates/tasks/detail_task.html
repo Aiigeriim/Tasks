@@ -5,6 +5,7 @@
     {% endblock %}
 
 {% block navbar %}
+    {% if user.is_authenticated %}
     <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'webapp:create_task' %}">Создать</a>
         </li>
@@ -14,6 +15,8 @@
     <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'webapp:delete_task' task.pk %}">Удалить</a>
         </li>
+
+    {% endif %}
           {% endblock %}
 
 {% block content %}

@@ -54,7 +54,7 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
     #     return redirect('accounts:login')
 
 
-class UpdateTaskView(FormView):
+class UpdateTaskView(LoginRequiredMixin, FormView):
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
 
@@ -79,7 +79,7 @@ class UpdateTaskView(FormView):
         form.save()
         return redirect('webapp:detail_task', pk=self.task.pk)
 
-class DeleteTaskView(View):
+class DeleteTaskView(LoginRequiredMixin, View):
     def post(self, request, pk):
         task = get_object_or_404(Task, pk=pk)
         task.delete()
@@ -89,7 +89,7 @@ class DeleteTaskView(View):
         return render(request, 'tasks/delete_task.html', {'pk': pk})
 
 
-class DetailTaskView(DetailView):
+class DetailTaskView(LoginRequiredMixin, DetailView):
     template_name = 'tasks/detail_task.html'
     model = Task
     pk_url_kwarg = 'pk'
@@ -99,11 +99,19 @@ class DetailTaskView(DetailView):
         result['types'] = self.object.type.order_by('-created_at')
         return result
 
-def delete_all_tasks(request):
-    ids = request.POST.getlist('webapp:task_ids')
-    if ids:
-        Task.objects.filter(id__in=ids).delete()
-    return redirect('webapp:index')
+
+class DeleteAllTasksView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        ids = request.POST.getlist('webapp:task_ids')
+        if ids:
+            Task.objects.filter(id__in=ids).delete()
+        return redirect('webapp:index')
+
+# def delete_all_tasks(request):
+#     ids = request.POST.getlist('webapp:task_ids')
+#     if ids:
+#         Task.objects.filter(id__in=ids).delete()
+#     return redirect('webapp:index')
 
 
 
