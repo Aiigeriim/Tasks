@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -42,9 +43,15 @@ class TaskListView(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data["search"]
 
-class CreateTaskView(CreateView):
+class CreateTaskView(LoginRequiredMixin, CreateView):
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
+    # login_url = 'webapp:index'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if request.user.is_authenticated:
+    #         return super().dispatch(request, *args, **kwargs)
+    #     return redirect('accounts:login')
 
 
 class UpdateTaskView(FormView):
