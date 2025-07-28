@@ -102,16 +102,12 @@ class DetailTaskView(LoginRequiredMixin, DetailView):
 
 class DeleteAllTasksView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
-        ids = request.POST.getlist('webapp:task_ids')
+        ids = request.POST.getlist('task_ids')
         if ids:
             Task.objects.filter(id__in=ids).delete()
         return redirect('webapp:index')
 
-# def delete_all_tasks(request):
-#     ids = request.POST.getlist('webapp:task_ids')
-#     if ids:
-#         Task.objects.filter(id__in=ids).delete()
-#     return redirect('webapp:index')
+
 
 
 
