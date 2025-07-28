@@ -1,10 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.http import urlencode
 from django.views import View
-from django.views.generic import FormView, ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
 
@@ -46,15 +46,9 @@ class TaskListView(ListView):
 class CreateTaskView(LoginRequiredMixin, CreateView):
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
-    # login_url = 'webapp:index'
-
-    # def dispatch(self, request, *args, **kwargs):
-    #     if request.user.is_authenticated:
-    #         return super().dispatch(request, *args, **kwargs)
-    #     return redirect('accounts:login')
 
 
-class UpdateTaskView(LoginRequiredMixin, FormView):
+class UpdateTaskView(LoginRequiredMixin, UpdateView):
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
 
@@ -79,15 +73,11 @@ class UpdateTaskView(LoginRequiredMixin, FormView):
         form.save()
         return redirect('webapp:detail_task', pk=self.task.pk)
 
-class DeleteTaskView(LoginRequiredMixin, View):
-    def post(self, request, pk):
-        task = get_object_or_404(Task, pk=pk)
-        task.delete()
-        return redirect('webapp:index')
-
-    def get(self, request, pk):
-        return render(request, 'tasks/delete_task.html', {'pk': pk})
-
+class DeleteTaskView(LoginRequiredMixin, DeleteView):
+    template_name = "tasks/delete_task.html"
+    # model = Task
+    queryset = Task.objects.all()
+    success_url = reverse_lazy('webapp:index')
 
 class DetailTaskView(LoginRequiredMixin, DetailView):
     template_name = 'tasks/detail_task.html'
