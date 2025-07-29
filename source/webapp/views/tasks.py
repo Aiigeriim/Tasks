@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -54,36 +55,33 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
 
 
 
-class UpdateTaskView(LoginRequiredMixin, UpdateView):
+class UpdateTaskView(PermissionRequiredMixin, UpdateView):
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
+    model = Task
 
-    def dispatch(self, request, *args, **kwargs):
-        self.task = self.get_object()
-        return super().dispatch(request, *args, **kwargs)
+    permission_required = 'tasks.change_task'
 
-    def get_object(self):
-        return get_object_or_404(Task, pk=self.kwargs['pk'])
+    def has_permission(self):
+        return super().has_permission() and self.request.user == self.get_object().author
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['instance'] = self.task
-        return kwargs
+    # def dispatch(self, request, *args, **kwargs):
+    #     user = self.request.user
+    #     if not user.is_authenticated:
+    #         return redirect('webapp:login')
+    #     elif not user.has_perm('tasks.change_task') and user != self.get_object().author:
+    #         raise PermissionDenied
+    #     return super().dispatch(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['task'] = self.task
-        return context
 
-    def form_valid(self, form):
-        form.save()
-        return redirect('webapp:detail_task', pk=self.task.pk)
-
-class DeleteTaskView(LoginRequiredMixin, DeleteView):
+class DeleteTaskView(PermissionRequiredMixin, DeleteView):
     template_name = "tasks/delete_task.html"
     # model = Task
     queryset = Task.objects.all()
     success_url = reverse_lazy('webapp:index')
+    permission_required = 'tasks.delete_task'
+    def has_permission(self):
+        return super().has_permission() and self.request.user == self.get_object().author
 
 class DetailTaskView(DetailView):
     template_name = 'tasks/detail_task.html'
