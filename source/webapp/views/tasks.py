@@ -47,6 +47,12 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+
 
 class UpdateTaskView(LoginRequiredMixin, UpdateView):
     template_name = 'tasks/update_task.html'
