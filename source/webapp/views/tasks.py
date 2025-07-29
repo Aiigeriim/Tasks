@@ -79,7 +79,7 @@ class DeleteTaskView(LoginRequiredMixin, DeleteView):
     queryset = Task.objects.all()
     success_url = reverse_lazy('webapp:index')
 
-class DetailTaskView(LoginRequiredMixin, DetailView):
+class DetailTaskView(DetailView):
     template_name = 'tasks/detail_task.html'
     model = Task
     pk_url_kwarg = 'pk'
