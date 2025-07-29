@@ -81,7 +81,7 @@ class DeleteTaskView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('webapp:index')
     permission_required = 'tasks.delete_task'
     def has_permission(self):
-        return super().has_permission() and self.request.user == self.get_object().author
+        return super().has_permission() or self.request.user == self.get_object().author
 
 class DetailTaskView(DetailView):
     template_name = 'tasks/detail_task.html'
