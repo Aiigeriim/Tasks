@@ -52,3 +52,4 @@ class RegisterView(CreateView):
             next_page = reverse('webapp:index')
 
         return next_page
+
