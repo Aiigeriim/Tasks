@@ -1,7 +1,7 @@
 {% extends 'tasks/../base.html' %}
 
 {% block title %}
-    	<title>Создать задачу</title>
+    	<title>Создать проект</title>
 {% endblock %}
 
  {% block navbar %}
@@ -10,8 +10,8 @@
 {% block content %}
 
 <div class="mt-3">
-<h1>Создать задачу</h1>
-<form action="{% url 'webapp:create_task' %}" method="post" class="w-50 ms-auto me-auto mt-3">
+<h1>Создать проект</h1>
+<form action="{% url 'webapp:create_project' %}" method="post" class="w-50 ms-auto me-auto mt-3">
     {% include 'partial/form.html' with btn_text='Создать' %}
 </form>
 </div>

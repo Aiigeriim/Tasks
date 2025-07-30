@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Task, TaskStatus, TaskType
+from webapp.models import Task, TaskStatus, TaskType, Project
 
 
 class TaskAdmin(admin.ModelAdmin):
@@ -27,3 +27,13 @@ class TaskTypeAdmin(admin.ModelAdmin):
     fields = ['name']
 
 admin.site.register(TaskType, TaskTypeAdmin)
+
+
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'start_date', 'end_date']
+    list_display_links = ['id', 'title']
+    search_fields = ['title']
+    fields = ['title', 'description', 'start_date', 'end_date']
+
+
+admin.site.register(Project, ProjectAdmin)

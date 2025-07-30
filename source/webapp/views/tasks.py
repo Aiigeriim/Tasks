@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
 from django.views import View
@@ -10,7 +9,7 @@ from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
 
 class TaskListView(ListView):
-    template_name = "tasks/index.html"
+    template_name = "projects/projects_list.html"
     model = Task
     context_object_name = "tasks"
     ordering = ("-created_at")
@@ -51,9 +50,6 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-
-
 
 class UpdateTaskView(PermissionRequiredMixin, UpdateView):
     template_name = 'tasks/update_task.html'

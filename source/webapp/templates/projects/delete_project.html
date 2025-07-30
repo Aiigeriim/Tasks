@@ -1,0 +1,16 @@
+{% extends 'tasks/../base.html' %}
+
+{% block title %}
+    	<title>Удалить проект</title>
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+     {% csrf_token %}
+    <p>Вы уверены, что хотите удалить проект <strong>{{ project.title }}?</strong> </p>
+     <a class="btn btn-success" href="{% url 'webapp:projects_list' %}">Отмена</a>
+    <button class="btn btn-danger"  type="submit">Да</button>
+    </form>
+
+{% endblock %}
