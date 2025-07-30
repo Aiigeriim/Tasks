@@ -65,7 +65,9 @@ class UpdateTaskView(PermissionRequiredMixin, UpdateView):
     def has_permission(self):
         return super().has_permission() and self.request.user == self.get_object().author
 
-    # def dispatch(self, request, *args, **kwargs):
+
+
+        # def dispatch(self, request, *args, **kwargs):
     #     user = self.request.user
     #     if not user.is_authenticated:
     #         return redirect('webapp:login')
@@ -79,7 +81,10 @@ class DeleteTaskView(PermissionRequiredMixin, DeleteView):
     # model = Task
     queryset = Task.objects.all()
     success_url = reverse_lazy('webapp:index')
+
+
     permission_required = 'tasks.delete_task'
+
     def has_permission(self):
         return super().has_permission() and self.request.user == self.get_object().author
 

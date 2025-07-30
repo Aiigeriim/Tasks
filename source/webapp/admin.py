@@ -9,8 +9,6 @@ class TaskAdmin(admin.ModelAdmin):
     search_fields = ['summary']
     fields = ['summary', 'status', 'description']
 
-
-
 admin.site.register(Task, TaskAdmin)
 
 class TaskStatusAdmin(admin.ModelAdmin):
