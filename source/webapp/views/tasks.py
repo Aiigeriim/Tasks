@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
 from django.views import View
@@ -52,9 +51,6 @@ class CreateTaskView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-
-
-
 class UpdateTaskView(PermissionRequiredMixin, UpdateView):
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
@@ -65,7 +61,9 @@ class UpdateTaskView(PermissionRequiredMixin, UpdateView):
     def has_permission(self):
         return super().has_permission() and self.request.user == self.get_object().author
 
-    # def dispatch(self, request, *args, **kwargs):
+
+
+        # def dispatch(self, request, *args, **kwargs):
     #     user = self.request.user
     #     if not user.is_authenticated:
     #         return redirect('webapp:login')
@@ -79,7 +77,10 @@ class DeleteTaskView(PermissionRequiredMixin, DeleteView):
     # model = Task
     queryset = Task.objects.all()
     success_url = reverse_lazy('webapp:index')
+
+
     permission_required = 'tasks.delete_task'
+
     def has_permission(self):
         return super().has_permission() or self.request.user == self.get_object().author
 

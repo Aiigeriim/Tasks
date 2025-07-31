@@ -1,7 +1,8 @@
+
 {% extends 'base.html' %}
 
 {% block title %}
-    <title>Задачи</title>
+    <title>Проекты</title>
 {% endblock %}
 
 {% block content %}
@@ -11,32 +12,33 @@
 <form method="post" action="{% url 'webapp:delete_all_tasks' %}">
   {% csrf_token %}
   <div class="row mt-4">
-    {% for task in tasks %}
+    {% for project in projects %}
       <div class="col-12 col-md-4 col-lg-3 mb-3">
         <div class="card border-primary mb-3">
           <div class="card-body">
             <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" name="task_ids" value="{{ task.id }}" id="task-{{ task.id }}">
-              <label class="form-check-label" for="task-{{ task.id }}">
-                <strong>{{ task.summary }}</strong>
+              <input class="form-check-input" type="checkbox" name="task_ids" value="{{ project.id }}" id="project-{{ project.id }}">
+              <label class="form-check-label" for="task-{{ project.id }}">
+                <strong>{{ project.title }}</strong>
               </label>
                 <br>
             </div>
           <div>
-               <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.status.name }}</h6>
+               <h6 class="card-subtitle mb-2 text-body-secondary">{{ project.start_date }}</h6>
               <br>
           <figcaption class="blockquote-footer">
-       Автор: <cite title="Автор">{{ task.author }}</cite>
+        <cite title="Описание">{{ project.description }}</cite>
       </figcaption>
           </div>
                <div class="card-footer bg-transparent">
-                   <a href="{% url 'webapp:detail_task' task.pk %}" title="Подробности"><i class="bi bi-info-square"></i></a>
+                   <a href="{% url 'webapp:detail_project' project.pk %}" title="Подробности"><i class="bi bi-info-square"></i></a>
                    {% if user.is_authenticated %}
                        {% if perms.webapp.change_task and user == task.author %}
-            <a href="{% url 'webapp:update_task' task.pk %}" title="Редактировать"> <i class="bi bi-pencil-square"></i></a>
+            <a href="{% url 'webapp:update_project' %}" title="Редактировать"> <i class="bi bi-pencil-square"></i></a>
                          {% endif %}
-                        {% if perms.webapp.delete_task and user == task.author %}
-                           <a href="{% url 'webapp:delete_task' task.pk %}" title="Удалить"><i class="bi bi-x-square-fill"></i></a>
+                       {% if perms.webapp.delete_task and user == task.author %}
+                           <a href="#" title="Удалить"><i class="bi bi-x-square-fill"></i></a>
+{#
                    {% endif %}
                        {% endif %}
 
@@ -45,7 +47,7 @@
         </div>
       </div>
     {% empty %}
-      <p>Задачи не найдены</p>
+      <p>Проекты не найдены</p>
     {% endfor %}
   </div>
     <div class="mt-3">
@@ -62,4 +64,3 @@
     {% endif %}
 
 {% endblock %}
-
