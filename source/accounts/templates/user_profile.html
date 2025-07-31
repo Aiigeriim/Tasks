@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   <title>Профиль</title>
+{% endblock %}
+
+{% block content %}
+	    <div class="card mt-5" style="width: 18rem;">
+        {% if user_obj.profile.avatar %}
+            <img src="{{ user_obj.profile.avatar.url }}" class="card-img-top" alt="...">
+            {% endif %}
+
+  <div class="card-body">
+    <h5 class="card-title">Имя - {{ user_obj.username }}</h5>
+      <p>Email - {{ user_obj.email }}</p>
+    <p class="card-text">День рождения - {{ user_obj.profile.birth_date|default:"не указан"}}</p>
+    <a href="#" class="btn btn-primary">Редактировать профиль</a>
+  </div>
+</div>
+
+    {% include 'partial/projects_list_partial.html'  %}
+
+{% endblock %}
