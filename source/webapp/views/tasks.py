@@ -9,7 +9,7 @@ from webapp.forms import TaskForm, SearchForm
 from webapp.models import Task
 
 class TaskListView(ListView):
-    template_name = "projects/projects_list.html"
+    template_name = "tasks/index.html"
     model = Task
     context_object_name = "tasks"
     ordering = ("-created_at")

@@ -52,10 +52,11 @@ class DetailProjectView(DetailView):
     pk_url_kwarg = 'pk'
 
     def get_context_data(self, **kwargs):
-        result = super().get_context_data(**kwargs)
-        # result['tasks'] = self.object.tasks.order_by('-created_at')
-        result['task'] = self.object.projects.order_by('-created_at')
-        return result
+        context = super().get_context_data(**kwargs)
+        context['project'] = self.object
+        context['tasks'] = self.object.tasks.order_by('-created_at')
+        context['search_form'] = SearchForm(self.request.GET)  # если нужна форма
+        return context
 #
 class CreateProjectView(LoginRequiredMixin, CreateView):
     template_name = 'projects/create_project.html'
