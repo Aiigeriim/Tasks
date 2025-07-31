@@ -30,6 +30,16 @@
       <blockquote class="blockquote">
         <p>{{  project.description }}</p>
       </blockquote>
+  <figcaption class="blockquote-footer">
+  Автор(ы):
+  <cite title="Авторы">
+    {% for author in project.author.all %}
+      {{ author }}{% if not forloop.last %}, {% else %}.{% endif %}
+    {% empty %}
+      не указаны.
+    {% endfor %}
+  </cite>
+</figcaption>
         <figcaption class="blockquote-footer">
        Начало:  <cite title="Добавлено">{{ project.start_date }}</cite>
       </figcaption>

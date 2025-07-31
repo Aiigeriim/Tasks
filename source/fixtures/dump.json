@@ -8,6 +8,7 @@
         "summary": "Черногория",
         "description": "Построить маршрут",
         "author": 1,
+        "project": 3,
         "status": 2
     }
 },
@@ -20,6 +21,7 @@
         "summary": "Продумать график на след месяц",
         "description": "уменьшить смены",
         "author": 1,
+        "project": 3,
         "status": 3
     }
 },
@@ -32,19 +34,8 @@
         "summary": "Обследование",
         "description": "",
         "author": 1,
+        "project": 3,
         "status": 1
-    }
-},
-{
-    "model": "webapp.task",
-    "pk": 5,
-    "fields": {
-        "created_at": "2025-07-11T00:58:19.942Z",
-        "updated_at": "2025-07-14T18:33:25.567Z",
-        "summary": "Отдохнуть!!!",
-        "description": "Отдохнуть!!!",
-        "author": 1,
-        "status": 2
     }
 },
 {
@@ -56,6 +47,7 @@
         "summary": "Питер",
         "description": "сходить туда, куда не успела в предыдущий раз",
         "author": 1,
+        "project": 3,
         "status": 1
     }
 },
@@ -68,6 +60,7 @@
         "summary": "Летим на Бали",
         "description": "Серфинг!!!!",
         "author": 1,
+        "project": 3,
         "status": 2
     }
 },
@@ -80,6 +73,7 @@
         "summary": "Подготовка к контрольной",
         "description": "пересмотреть урок",
         "author": 1,
+        "project": 3,
         "status": 3
     }
 },
@@ -92,6 +86,7 @@
         "summary": "Мурманск",
         "description": "Северное сияние, киты",
         "author": 1,
+        "project": 3,
         "status": 1
     }
 },
@@ -104,6 +99,7 @@
         "summary": "Разобрать тему ORM в Django",
         "description": "Подружиться с shell",
         "author": 1,
+        "project": 3,
         "status": 2
     }
 },
@@ -116,6 +112,7 @@
         "summary": "Сходить в спа",
         "description": "Полежать в бочке\r\nЗабыть телефон дома",
         "author": 1,
+        "project": 3,
         "status": 2
     }
 },
@@ -128,6 +125,7 @@
         "summary": "Организовать семейный ужин",
         "description": "Семейный ужин = пройтись по минному полю. Спешное мероприятие с высоким риском: не язвить, не сарказничать — просто поесть. Желательно в тишине и без допросов.\r\nСемейный вечер, где цель не просто поесть, а выжить. Просто еда. Просто семья. Просто ад на два часа. В бой идут не только старые обиды, но и селёдка под шубой. Битва взглядов, вздохов, упрёков и философских тостов. Спастись можно только через кухню и окно.",
         "author": 1,
+        "project": 3,
         "status": 3
     }
 },
@@ -140,6 +138,7 @@
         "summary": "khnolihjoihjo",
         "description": "uhnoujhoihjouh",
         "author": 1,
+        "project": 3,
         "status": 1
     }
 },
@@ -152,6 +151,7 @@
         "summary": "kuhjikghiuh",
         "description": "yhgbjhbkjnkjn",
         "author": 8,
+        "project": 3,
         "status": 1
     }
 },
@@ -164,6 +164,7 @@
         "summary": "manager",
         "description": "11111111111111111",
         "author": 5,
+        "project": 3,
         "status": 2
     }
 },
@@ -176,6 +177,7 @@
         "summary": "lead lead lead",
         "description": "333333333333333333",
         "author": 6,
+        "project": 3,
         "status": 1
     }
 },
@@ -188,6 +190,7 @@
         "summary": "dev dev dev",
         "description": "d33333333333333",
         "author": 7,
+        "project": 3,
         "status": 1
     }
 },
@@ -236,26 +239,6 @@
         "updated_at": "2025-07-13T14:51:49.713Z",
         "task": 2,
         "type": 1
-    }
-},
-{
-    "model": "webapp.tasktyperelation",
-    "pk": 15,
-    "fields": {
-        "created_at": "2025-07-13T14:52:02.152Z",
-        "updated_at": "2025-07-13T14:52:02.152Z",
-        "task": 5,
-        "type": 4
-    }
-},
-{
-    "model": "webapp.tasktyperelation",
-    "pk": 16,
-    "fields": {
-        "created_at": "2025-07-13T14:52:02.152Z",
-        "updated_at": "2025-07-13T14:52:02.152Z",
-        "task": 5,
-        "type": 5
     }
 },
 {
@@ -346,16 +329,6 @@
         "updated_at": "2025-07-13T21:43:10.384Z",
         "task": 1,
         "type": 6
-    }
-},
-{
-    "model": "webapp.tasktyperelation",
-    "pk": 67,
-    "fields": {
-        "created_at": "2025-07-14T18:33:25.573Z",
-        "updated_at": "2025-07-14T18:33:25.573Z",
-        "task": 5,
-        "type": 3
     }
 },
 {
@@ -580,6 +553,112 @@
         "created_at": "2025-07-13T14:45:09.514Z",
         "updated_at": "2025-07-13T14:45:09.514Z",
         "name": "Семья"
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 2,
+    "fields": {
+        "created_at": "2025-07-30T19:49:06.268Z",
+        "updated_at": "2025-07-30T22:23:35.859Z",
+        "start_date": "2025-07-05",
+        "end_date": "2025-07-27",
+        "title": "проект один",
+        "description": "описание",
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 3,
+    "fields": {
+        "created_at": "2025-07-30T16:55:29.895Z",
+        "updated_at": "2025-07-30T16:55:46.325Z",
+        "start_date": "2025-07-05",
+        "end_date": null,
+        "title": "тест",
+        "description": null,
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 4,
+    "fields": {
+        "created_at": "2025-07-30T17:23:07.204Z",
+        "updated_at": "2025-07-30T22:37:47.509Z",
+        "start_date": "2025-07-15",
+        "end_date": "2025-07-22",
+        "title": "проект 3",
+        "description": "проект дева",
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 5,
+    "fields": {
+        "created_at": "2025-07-30T21:45:01.094Z",
+        "updated_at": "2025-07-30T21:45:01.094Z",
+        "start_date": "2025-07-17",
+        "end_date": "2025-07-17",
+        "title": "мой проект",
+        "description": "111111111111",
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 12,
+    "fields": {
+        "created_at": "2025-07-31T12:32:46.091Z",
+        "updated_at": "2025-07-31T12:32:46.091Z",
+        "start_date": "2025-07-15",
+        "end_date": null,
+        "title": "тестовый проект",
+        "description": "222222222",
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 13,
+    "fields": {
+        "created_at": "2025-07-31T12:35:54.716Z",
+        "updated_at": "2025-07-31T12:35:54.716Z",
+        "start_date": "2025-07-23",
+        "end_date": null,
+        "title": "777777777777",
+        "description": "8888888888",
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 14,
+    "fields": {
+        "created_at": "2025-07-31T12:37:46.133Z",
+        "updated_at": "2025-07-31T12:37:46.133Z",
+        "start_date": "2025-07-01",
+        "end_date": null,
+        "title": "7888888888888888",
+        "description": "999999999999",
+        "author": []
+    }
+},
+{
+    "model": "webapp.project",
+    "pk": 15,
+    "fields": {
+        "created_at": "2025-07-31T12:38:35.219Z",
+        "updated_at": "2025-07-31T12:38:35.219Z",
+        "start_date": "2025-07-23",
+        "end_date": null,
+        "title": "6999999999999",
+        "description": "55555555555555",
+        "author": [
+            1
+        ]
     }
 }
 ]
