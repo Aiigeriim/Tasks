@@ -8,7 +8,7 @@ app_name = 'webapp'
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='projects_list'),
-    path('project/<int:pk>/', DetailProjectView.as_view(), name='detail_project'),
+    path('project/<int:pk>/detail', DetailProjectView.as_view(), name='detail_project'),
     path('add-project/', CreateProjectView.as_view(), name='create_project'),
     path('project/<int:pk>/update/', UpdateProjectView.as_view(), name='update_project'),
     path('project/<int:pk>/delete/', DeleteProjectView.as_view(), name='delete_project'),
