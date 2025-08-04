@@ -68,28 +68,28 @@ class CreateProjectView(LoginRequiredMixin, CreateView):
         self.object.author.add(self.request.user)
         return response
 #
-class UpdateProjectView(UpdateView):
+class UpdateProjectView(PermissionRequiredMixin, UpdateView):
     #
     template_name = 'projects/update_project.html'
     form_class = ProjectForm
     model = Project
 
-#PermissionRequiredMixin,
 
-    # permission_required = 'tasks.change_task'
-    #
-    # def has_permission(self):
-    #     return super().has_permission() and self.request.user == self.get_object().author
-#
-#
-#
-#         # def dispatch(self, request, *args, **kwargs):
-#     #     user = self.request.user
-#     #     if not user.is_authenticated:
-#     #         return redirect('webapp:login')
-#     #     elif not user.has_perm('tasks.change_task') and user != self.get_object().author:
-#     #         raise PermissionDenied
-#     #     return super().dispatch(request, *args, **kwargs)
+
+    permission_required = 'projects.change_project'
+
+    def has_permission(self):
+        return super().has_permission() or self.request.user == self.get_object().author
+
+
+
+        # def dispatch(self, request, *args, **kwargs):
+    #     user = self.request.user
+    #     if not user.is_authenticated:
+    #         return redirect('webapp:login')
+    #     elif not user.has_perm('tasks.change_task') and user != self.get_object().author:
+    #         raise PermissionDenied
+    #     return super().dispatch(request, *args, **kwargs)
 #
 #
 class DeleteProjectView(DeleteView):
@@ -104,12 +104,12 @@ class DeleteProjectView(DeleteView):
 #     def has_permission(self):
 #         return super().has_permission() and self.request.user == self.get_object().author
 #
-# class DeleteAllTasksView(LoginRequiredMixin, View):
-#     def post(self, request, *args, **kwargs):
-#         ids = request.POST.getlist('task_ids')
-#         if ids:
-#             Task.objects.filter(id__in=ids).delete()
-#         return redirect('webapp:index')
+class DeleteAllProjectsView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        ids = request.POST.getlist('project_ids')
+        if ids:
+            Project.objects.filter(id__in=ids).delete()
+        return redirect('accounts:projects_list')
 
 
 
